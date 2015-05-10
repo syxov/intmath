@@ -1,0 +1,1 @@
+It's Golang math library which use only int type.

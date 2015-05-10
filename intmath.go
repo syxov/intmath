@@ -38,8 +38,13 @@ func Signbit(x int) bool {
 	return x < 0
 }
 
-func Sign(x int) int {
-	return (x >> intSizeMinusOne) | (unsignedRightShift(-x, intSizeMinusOne))
+func Sign(x int) (result int) {
+	if x > 0 {
+		result = 1
+	} else if x < 0 {
+		result = -1
+	}
+	return
 }
 
 func Copysign(x, y int) int {
@@ -50,9 +55,4 @@ func Copysign(x, y int) int {
 func Abs(x int) int {
 	y := x >> intSizeMinusOne
 	return (x ^ y) - y
-}
-
-func unsignedRightShift(x int, step uint) int {
-	var y uint = uint(Abs(x))
-	return int((y | bitField) >> step)
 }
