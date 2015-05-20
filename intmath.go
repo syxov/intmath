@@ -38,13 +38,14 @@ func Signbit(x int) bool {
 	return x < 0
 }
 
-func Sign(x int) (result int) {
+func Sign(x int) int {
 	if x > 0 {
-		result = 1
-	} else if x < 0 {
-		result = -1
+		return 1
 	}
-	return
+	if x < 0 {
+		return -1
+	}
+	return 0
 }
 
 func Copysign(x, y int) int {
@@ -86,13 +87,14 @@ func Signbit32(x int32) bool {
 	return x < 0
 }
 
-func Sign32(x int32) (result int32) {
+func Sign32(x int32) int32 {
 	if x > 0 {
-		result = 1
-	} else if x < 0 {
-		result = -1
+		return 1
 	}
-	return
+	if x < 0 {
+		return -1
+	}
+	return 0
 }
 
 func Copysign32(x, y int32) int32 {
