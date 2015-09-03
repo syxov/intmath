@@ -1,12 +1,11 @@
 package intmath
 
 var (
-	intSizeMinusOne, bitField uint
+	intSizeMinusOne uint
 )
 
 func init() {
 	intSizeMinusOne = (32 << (^uint(0) >> 63)) - 1
-	bitField = 1 << intSizeMinusOne
 }
 
 func Dim(x, y int) (value int) {
@@ -98,11 +97,11 @@ func Sign32(x int32) int32 {
 }
 
 func Copysign32(x, y int32) int32 {
-	t := (x ^ y) >> intSizeMinusOne
+	t := (x ^ y) >> 31
 	return (x ^ t) - t
 }
 
 func Abs32(x int32) int32 {
-	y := x >> intSizeMinusOne
+	y := x >> 31
 	return (x ^ y) - y
 }
