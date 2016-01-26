@@ -2,10 +2,14 @@ package intmath
 
 import (
 	"math"
+	"strconv"
 )
 
+var intSizeMinusOne uint = strconv.IntSize - 1
+
 func Abs(x int) int {
-	return int(math.Abs(float64(x)))
+	y := x >> intSizeMinusOne
+	return (x + y) ^ y
 }
 
 func Acos(x int) float64 {
@@ -41,7 +45,8 @@ func Cbrt(x int) float64 {
 }
 
 func Copysign(x, y int) int {
-	return int(math.Copysign(float64(x), float64(y)))
+	t := y >> intSizeMinusOne
+	return (Abs(x) ^ t) - t
 }
 
 func Cos(x int) float64 {
@@ -153,7 +158,7 @@ func Sin(x int) float64 {
 	return math.Sin(float64(x))
 }
 
-func Sincos(x int) (sin, cos float64) {
+func Sincos(x int) (float64, float64) {
 	return math.Sincos(float64(x))
 }
 
